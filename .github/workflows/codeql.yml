@@ -12,7 +12,7 @@
 name: "CodeQL SAST"
 
 on:
-  woworkflow_dispatch
+  workflow_dispatch
 
 jobs:
   analyze:
