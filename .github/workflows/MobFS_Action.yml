@@ -8,18 +8,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
 
       - name: Set-up Java
         uses: actions/setup-java@v1
         with:
           java-version: '12.x'
-
+  
       - name: Set-up Flutter
-        uses: subosito/flutter-action@v1
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '1.9.1+hotfix.6'
-
+          flutter-version: 3.19.0
+          
       - name: Flutter Install Dependencies
         run: flutter pub get
 
