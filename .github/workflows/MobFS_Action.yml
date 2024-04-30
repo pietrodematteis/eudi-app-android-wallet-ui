@@ -20,6 +20,9 @@ jobs:
         with:
           flutter-version: 3.19.0
           
+      - name: Flutter version
+        run: flutter --version
+      
       - name: Flutter Install Dependencies
         run: flutter pub get
 
