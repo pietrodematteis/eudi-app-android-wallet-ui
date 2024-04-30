@@ -23,8 +23,8 @@ jobs:
       - name: Flutter version
         run: flutter --version
       
-      - name: Flutter Install Dependencies
-        run: flutter pub get
+     # - name: Flutter Install Dependencies
+     #   run: flutter pub get
 
       - name: Flutter Test
         run: flutter test
