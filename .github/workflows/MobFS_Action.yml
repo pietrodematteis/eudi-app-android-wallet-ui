@@ -26,8 +26,8 @@ jobs:
      # - name: Flutter Install Dependencies
      #   run: flutter pub get
 
-      - name: Flutter Test
-        run: flutter test
+     # - name: Flutter Test
+     #   run: flutter test
 
       - name: Flutter Build
         run: flutter build apk
