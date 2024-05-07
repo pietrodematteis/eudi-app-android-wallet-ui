@@ -1,0 +1,50 @@
+name: Android CI with MobSF
+on:
+  workflow_dispatch
+ 
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout Repo
+        uses: actions/checkout@master
+
+      - name: Set-up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build    
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+      
+      - name: Run MobSF Analysis
+        uses: smk5797/mobsf-action@v1.7.15
+        env:
+          INPUT_FILE_NAME: app/build/outputs/apk/debug/app-debug.apk
+          SCAN_TYPE: apk
+          OUTPUT_FILE_NAME: mobsf-report
+
+      - name: Upload MobSF Analysis PDF Result
+        uses: actions/upload-artifact@v2
+        with:
+          name: mobsf-report.pdf
+          path: mobsf-report.pdf
+
+      - name: Upload MobSF Analysis JSON Result
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobsf-report.json
+          path: mobsf-report.json
